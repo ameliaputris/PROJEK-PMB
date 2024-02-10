@@ -24,7 +24,7 @@ class UserController extends Controller
             if (session('error')) {
                 Alert::error(session('error'));
             }
-            
+
             if (session('warning')) {
                 Alert::warning(session('warning'));
             }
@@ -44,7 +44,6 @@ class UserController extends Controller
         //dd('Regist Berhasil');
         //return redirect('/data-user')->with('berhasil','data berhasil disimpanI');
     try{
-        $a->password = Hash::make($a->password);
         $checkuser = User::where('email',$a->email)->first();
         if($checkuser){
             return redirect()->back()->with('warning', 'Email Telah Terdaftar!');
@@ -83,7 +82,7 @@ class UserController extends Controller
                     'no_hp' => $a->nohp,
                 ]);
             }
-        
+
         Timeline::create([
             'user_id' => $usersid->id,
             'status' => "Bergabung",
@@ -175,7 +174,7 @@ class UserController extends Controller
     }
     }
 
-    
+
     public function insertRegis(Request $a){
         try{
             $checkuser = User::where('email',$a->email)->first();
